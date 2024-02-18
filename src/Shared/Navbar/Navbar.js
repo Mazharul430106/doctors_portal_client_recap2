@@ -8,12 +8,12 @@ const Navbar = () => {
         <li ><Link to='/about'>About</Link></li>
         <li ><Link to='/contact'>Contact</Link></li>
         <li ><Link to='/register'>Register</Link></li>
-        <li ><Link to='/login'>Login</Link></li>
+        <li ><Link to='/login' className=''>Login</Link></li>
     </>
 
 
     return (
-        <div className="navbar shadow-xl px-10">
+        <div className="navbar shadow-xl px-5">
             <div className="navbar-start w-full">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
