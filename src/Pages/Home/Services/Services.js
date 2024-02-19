@@ -32,7 +32,7 @@ const Services = () => {
 
     return (
 
-        <div className='lg:mb-[170px] mb-20'>
+        <div className='lg:mb-[170px] mb-20 '>
             <div className='text-center mb-[70px]'>
                 <h3 className='text-[#19D3AE] font-bold text-[20px]'>OUR SERVICES</h3>
                 <h2 className='text-[36px]'>Services We Provide</h2>
@@ -44,7 +44,7 @@ const Services = () => {
                 }
             </div>
 
-            <div className="hero lg:mt-[154px] md:mt-20 mt-5">
+            <div className="hero lg:mt-[154px] md:mt-20 mt-5  xl:pb-[100px] lg:pb-0 ">
                 <div className="hero-content p-0 flex-col lg:flex-row gap-20">
                     <img src={treatment} className="w-full lg:h-[576px] md:h-[576px] h-full rounded-lg shadow-2xl" />
                     <div>
