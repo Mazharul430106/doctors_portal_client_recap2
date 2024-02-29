@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import AvailableAppointment from '../AvailableAppointment/AvailableAppointment';
 
@@ -9,7 +9,7 @@ const Appointment = () => {
     return (
         <div className='px-5'>
            <AppointmentBanner selectedDate={selectedDate} setSelectedDate={setSelectedDate}></AppointmentBanner>
-           <AvailableAppointment selectedDate={selectedDate}></AvailableAppointment>
+           <AvailableAppointment  selectedDate={selectedDate}></AvailableAppointment>
         </div>
     );
 };
