@@ -22,7 +22,10 @@ const Navbar = () => {
         <li ><Link to='/register'>Register</Link></li>
         {
             user?.uid ?
-                <li ><Link onClick={handleLogout} className=''>Logout</Link></li>
+                <>
+                    <li ><Link to='/dashboard'>Dashboard</Link></li>
+                    <li ><Link onClick={handleLogout} className=''>Logout</Link></li>
+                </>
                 :
                 <li ><Link to='/login' className=''>Login</Link></li>
         }

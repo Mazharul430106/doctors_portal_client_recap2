@@ -6,6 +6,8 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Home from "../Home/Home/Home";
 import Appointment from "../Appointment/Appointment/Appointment";
+import Dashboard from "../Dashboard/Dashboard/Dashboard";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const routes = createBrowserRouter([
     {
@@ -34,13 +36,20 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/appointment',
-                element:<Appointment></Appointment>
+                element: <Appointment></Appointment>
             }
         ],
 
     },
+
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+    },
+
     {
         path: '*',
         element: <div>Data Not Found</div>
     }
+    
 ]);

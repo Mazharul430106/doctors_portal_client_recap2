@@ -1,29 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
     const { register, handleSubmit } = useForm();
 
-    const { createUser } = useContext(AuthContext);
-
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const [registerError, setRegisterError] = useState('');
 
     const handleRegister = (data) => {
         console.log(data);
-
+        setRegisterError('');
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                
+                toast.success('User Created Successfully');
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUserProfile(userInfo)
+                    .then(() => { })
+                    .catch(error => console.log(error))
             })
-            .catch(error => console.log(error))
-
-
+            .catch(error => {
+                console.log(error.message);
+                setRegisterError(error.message);
+            })
     }
-
 
     return (
         <div className="hero pt-10 pb-10">
@@ -59,6 +66,8 @@ const Register = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+                            {registerError && <p className='text-red-500'>{registerError}</p>}
+
                             <div className="form-control mt-6">
                                 <button className="btn bg-[#3A4256] text-white hover:bg-emerald-400 uppercase">Register</button>
                             </div>
