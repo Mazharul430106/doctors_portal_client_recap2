@@ -2,16 +2,27 @@ import { format } from 'date-fns';
 import DisplayAvailableAppointment from './DisplayAvailableAppointment';
 import { useEffect, useState } from 'react';
 import BookingModal from '../BookingModal/BookingModal';
+import { useQuery } from '@tanstack/react-query';
+
+
 
 const AvailableAppointment = ({ selectedDate }) => {
-    const [appointments, setAppointments] = useState([]);
+    // const [appointments, setAppointments] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
-    useEffect(() => {
-        fetch('appointmentOptions.json')
+    const { data: appointments = [] } = useQuery({
+        queryKey: ['appointments'],
+        queryFn: () => fetch('http://localhost:5000/appointmentOptions')
             .then(res => res.json())
-            .then(data => setAppointments(data))
-    }, [])
+    })
+
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/appointmentOptions')
+    //         .then(res => res.json())
+    //         .then(data => setAppointments(data))
+    // }, [])
+
 
     return (
         <section className='mt-16 mb-24'>
@@ -21,7 +32,7 @@ const AvailableAppointment = ({ selectedDate }) => {
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
                 {
 
-                    appointments.map(appointment =>
+                    appointments?.map(appointment =>
 
                         <DisplayAvailableAppointment
                             appointment={appointment} key={appointment.id}
