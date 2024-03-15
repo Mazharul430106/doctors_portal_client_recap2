@@ -35,7 +35,7 @@ const AvailableAppointment = ({ selectedDate }) => {
                     appointments?.map(appointment =>
 
                         <DisplayAvailableAppointment
-                            appointment={appointment} key={appointment.id}
+                            appointment={appointment} key={appointment._id}
                             setTreatment={setTreatment}
                         >
                         </DisplayAvailableAppointment>)

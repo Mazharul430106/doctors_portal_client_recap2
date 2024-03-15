@@ -36,7 +36,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/appointment',
-                element: <Appointment></Appointment>
+                element: <PrivateRoutes><Appointment></Appointment></PrivateRoutes>
             }
         ],
 
