@@ -48,11 +48,11 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control">
-                                <button className="btn bg-[#3A4256] text-white hover:bg-emerald-400 uppercase">Login</button>
+                                <button className="btn bg-[#3A4256] hover:bg-gradient-to-r from-primary to-secondary text-white uppercase">Login</button>
                             </div>
                             <div className="divider">OR</div>
                             <div className="form-control">
-                                <button className="btn bg-[#3A4256] text-white hover:bg-emerald-400 uppercase">Login With Google</button>
+                                <button className="btn bg-[#3A4256] hover:bg-gradient-to-r from-primary to-secondary text-white uppercase">Login With Google</button>
                             </div>
 
                             <div className='flex items-center justify-between'>

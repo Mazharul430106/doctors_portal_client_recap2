@@ -42,10 +42,10 @@ export const routes = createBrowserRouter([
 
     },
 
-    {
-        path: '/dashboard',
-        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
-    },
+    
+
+
+
 
     {
         path: '*',

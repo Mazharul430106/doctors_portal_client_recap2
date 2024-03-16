@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
 
-const BookingModal = ({ treatment, selectedDate }) => {
+const BookingModal = ({ treatment, selectedDate, refetch }) => {
     const { name, slots } = treatment;
     const date = format(selectedDate, 'PP');
     const { user, loading } = useContext(AuthContext);
@@ -38,7 +38,10 @@ const BookingModal = ({ treatment, selectedDate }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    toast.success('booking seccess')
+                    toast.success('booking seccess');
+                    refetch();
+                }else{
+                    toast.error(data.message)
                 }
             })
     }
@@ -53,8 +56,6 @@ const BookingModal = ({ treatment, selectedDate }) => {
                     </div>
                     <form onSubmit={handleBookingData} action="" method="dialog">
                         <div>
-
-
                             <div className="form-control mb-3">
                                 <input name='date' type="text" disabled value={date} className="input input-bordered" />
                             </div>
@@ -71,13 +72,12 @@ const BookingModal = ({ treatment, selectedDate }) => {
                                 <input name='email' type="email" placeholder='email' defaultValue={user?.email} readOnly className="input input-bordered focus:outline-none " />
                             </div>
                             <div className="form-control mb-3">
-                                <input name='phone' type="text" placeholder='phone number' className="input input-bordered focus:outline-none " />
+                                <input name='phone' type="text" placeholder='phone number' className="input input-bordered focus:outline-none " required />
                             </div>
                             <div className="form-control mb-0 mt-6">
                                 <input type="submit" value='submit' className="btn  hover:text-white uppercase bg-gradient-to-r from-primary to-secondary" />
                             </div>
                         </div>
-
                     </form>
                 </div>
             </dialog>

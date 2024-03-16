@@ -69,7 +69,7 @@ const Register = () => {
                             {registerError && <p className='text-red-500'>{registerError}</p>}
 
                             <div className="form-control mt-6">
-                                <button className="btn bg-[#3A4256] text-white hover:bg-emerald-400 uppercase">Register</button>
+                                <button className="btn bg-[#3A4256] hover:bg-gradient-to-r from-primary to-secondary text-white uppercase">Register</button>
                             </div>
 
                             <div className='flex items-center justify-between'>

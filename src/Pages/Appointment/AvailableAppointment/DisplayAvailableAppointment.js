@@ -9,8 +9,23 @@ const DisplayAvailableAppointment = ({ appointment, setTreatment, selectedDate }
                 <h2 className='text-2xl font-semibold text-secondary'>{name}</h2>
                 <h3 className='text-sm py-3'>{slots.length > 0 ? slots[0] : 'Try another day'}</h3>
                 <p className='pb-3'>{slots.length} {slots.length > 1 ? 'spaces' : 'space'} available</p>
-                <button className="btn uppercase text-white bg-gradient-to-r from-primary to-secondary" onClick={() => setTreatment(appointment) || document.getElementById('BookingModal')?.showModal()}>Book Appointment
-                </button>
+
+
+                {
+                    slots.length < 1 ? <>
+                        <button disabled className="btn uppercase text-white bg-gradient-to-r from-primary to-secondary" onClick={() => setTreatment(appointment) || document.getElementById('BookingModal')?.showModal()}>Book Appointment
+                        </button>
+
+                    </>
+                        :
+                        <>
+                            <button className="btn uppercase text-white bg-gradient-to-r from-primary to-secondary" onClick={() => setTreatment(appointment) || document.getElementById('BookingModal')?.showModal()}>Book Appointment
+                            </button>
+                        </>
+                }
+
+
+
 
             </div>
         </div>
