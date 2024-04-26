@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleService = ({ singleService }) => {
-    console.log(singleService)
+    // console.log(singleService)
 
     const {name, icon, description} = singleService;
 

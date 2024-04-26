@@ -6,8 +6,11 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Home from "../Home/Home/Home";
 import Appointment from "../Appointment/Appointment/Appointment";
-import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import MyAppointment from "../Dashboard/MyAppointment/MyAppointment";
+import AllUsers from "../Dashboard/AllUsers/AllUsers";
+import AdminRoutes from "./AdminRoutes";
 
 export const routes = createBrowserRouter([
     {
@@ -42,10 +45,21 @@ export const routes = createBrowserRouter([
 
     },
 
-    
+    {
+        path: '/dashboard',
+        element:<PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
+        children: [
 
-
-
+            {
+                path:'/dashboard',
+                element:<MyAppointment></MyAppointment>
+            },
+            {
+                path:'/dashboard/allUsers',
+                element:<AdminRoutes><AllUsers></AllUsers></AdminRoutes>
+            },
+        ]
+    },
 
     {
         path: '*',

@@ -1,16 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
+import useAdmin from '../../hooks/useAdmin';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const PrivateRoutes = ({ children }) => {
+const AdminRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 
-    if (loading) {
+    if (loading || isAdminLoading) {
         return <span className="loading loading-spinner text-accent"></span>
     }
 
-    if (user) {
+    if (user && isAdmin) {
         return children;
     }
 
@@ -18,5 +20,4 @@ const PrivateRoutes = ({ children }) => {
 
 };
 
-export default PrivateRoutes;
-
+export default AdminRoutes;

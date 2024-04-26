@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import UseToken from '../../hooks/UseToken';
 
 const Register = () => {
 
@@ -10,6 +11,16 @@ const Register = () => {
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const [registerError, setRegisterError] = useState('');
+    const [creatededEmail, setCreatededEmail] = useState('');
+    const [token] = UseToken(creatededEmail)
+
+    const navigate = useNavigate()
+
+    if (token) {
+        navigate('/');
+    }
+
+
 
     const handleRegister = (data) => {
         console.log(data);
@@ -17,20 +28,40 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 toast.success('User Created Successfully');
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUserProfile(userInfo)
-                    .then(() => { })
-                    .catch(error => console.log(error))
+                    .then(() => {
+                        saveUserFromDatabase(data.name, data.email);
+                    })
+                    .catch(error => console.log(error));
             })
             .catch(error => {
                 console.log(error.message);
                 setRegisterError(error.message);
             })
     }
+
+    const saveUserFromDatabase = (name, email) => {
+        const user = { name, email };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setCreatededEmail(email);
+            })
+
+    }
+
 
     return (
         <div className="hero pt-10 pb-10">
